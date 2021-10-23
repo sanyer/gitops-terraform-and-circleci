@@ -14,26 +14,21 @@ terraform {
 }
 
 provider "google" {
-  credentials = file("terraform-deploy.json")
-  project     = "gitops-terraform-and-circleci"
-  region      = "europe-west2"
-  zone        = "europe-west2-a"
-}
-
-variable "root-name" {
-  type    = string
-  default = "main"
+  credentials = file(var.credentials_file)
+  project     = var.project
+  region      = var.region
+  zone        = var.zone
 }
 
 locals {
-  subnet_name            = "${var.root-name}-subnet"
-  pod_range_name         = "${var.root-name}-pods"
-  service_range_name     = "${var.root-name}-services"
-  router_name            = "${var.root-name}-router"
-  external_ip_name       = "${var.root-name}-external-ip"
-  cluster_nat_name       = "${var.root-name}-nat"
-  cluster_name           = "${var.root-name}-cluster"
-  primary-node-pool-name = "${var.root-name}-primary-nodes"
+  subnet_name            = "${var.label}-subnet"
+  pod_range_name         = "${var.label}-pods"
+  service_range_name     = "${var.label}-services"
+  router_name            = "${var.label}-router"
+  external_ip_name       = "${var.label}-external-ip"
+  cluster_nat_name       = "${var.label}-nat"
+  cluster_name           = "${var.label}-cluster"
+  primary-node-pool-name = "${var.label}-primary-nodes"
 }
 
 
@@ -122,8 +117,7 @@ resource "google_container_cluster" "cluster" {
   # (assuming they can authenticate).
   master_authorized_networks_config {
     cidr_blocks {
-      cidr_block   = "92.108.209.182/32"
-      display_name = "home"
+      cidr_block = var.cidr_block
     }
   }
 
