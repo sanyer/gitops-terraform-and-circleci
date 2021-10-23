@@ -7,9 +7,9 @@ terraform {
   }
 
   backend "gcs" {
-    bucket      = var.backend_bucket
+    bucket      = "tf-state-gitops-terraform-and-circleci"
     prefix      = "terraform/state"
-    credentials = var.credentials_file
+    credentials = "terraform-deploy.json"
   }
 }
 
