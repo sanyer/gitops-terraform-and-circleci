@@ -119,12 +119,11 @@ resource "google_container_cluster" "cluster" {
   }
 
   # This is a Private Cluster, so we need to define who can run Kubectl
-  # (assuming they can authenticate). In this case we'll open it to traffic
-  # from any IP, due to DevOps strange use of random IP's when deploying
+  # (assuming they can authenticate).
   master_authorized_networks_config {
     cidr_blocks {
-      cidr_block   = "0.0.0.0/0"
-      display_name = "everyone"
+      cidr_block   = "92.108.209.182/32"
+      display_name = "home"
     }
   }
 
