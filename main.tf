@@ -20,11 +20,6 @@ provider "google" {
   zone        = var.zone
 }
 
-variable "label" {
-  type    = string
-  default = var.label
-}
-
 locals {
   subnet_name            = "${var.label}-subnet"
   pod_range_name         = "${var.label}-pods"
