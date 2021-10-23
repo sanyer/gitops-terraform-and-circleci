@@ -122,7 +122,7 @@ resource "google_container_cluster" "cluster" {
   # (assuming they can authenticate).
   master_authorized_networks_config {
     cidr_blocks {
-      cidr_block   = var.cidr_block
+      cidr_block = var.cidr_block
     }
   }
 
