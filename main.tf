@@ -22,7 +22,7 @@ provider "google" {
 
 variable "root-name" {
   type    = string
-  default = "gitops"
+  default = "main"
 }
 
 locals {
